@@ -1,10 +1,11 @@
-const married = true;
-const age = 18;
-const first_name = 'at';
-const arr1 = [1, 2, 3, 4];
-const arr2 = [5, 6, 7];
+var married = true;
+var age = 18;
+var first_name = 'at';
+var arr1 = [1, 2, 3, 4];
+var arr2 = [5, 6, 7];
 // 元祖类型 tuple 数量和类型已知的数组
-const at = ['at', 18];
+var at = ['at', 18];
+// ________________________________________________________________
 // 普通枚举
 var Gender;
 (function (Gender) {
@@ -13,7 +14,8 @@ var Gender;
 })(Gender || (Gender = {}));
 console.log(Gender['GIRL'], Gender[0]);
 console.log(Gender['BOY'], Gender[1]);
-const myColor = [0 /* RED */, 1 /* YELLOW */, 2 /* BLUE */]; // 0,1,2 / 编译后 Colors 中的变量就被省去了
+var myColor = [0 /* RED */, 1 /* YELLOW */, 2 /* BLUE */]; // 0,1,2 / 编译后 Colors 中的变量就被省去了
+// ________________________________________________________________
 // 任意类型
 // any
 // 如果变量定义为 any 类型，就跟 js 差不多，不进行类型检查
@@ -25,17 +27,19 @@ const myColor = [0 /* RED */, 1 /* YELLOW */, 2 /* BLUE */]; // 0,1,2 / 编译�
 // element!.style.color = 'green'
 // null undefined 是其他类型的子类型
 // 如果 tsconfig.json 中配置 strictNullChecks 的值为 true，则不能把 null undefined 赋值给 x
-let x;
+var x;
 x = 1;
+// strictNullChecks 设置为true时，undefined 和 null 不是其他类型的子类型
 // x = undefined
 // x = null
-let z = undefined;
-let z2 = undefined;
-let z3 = null;
-let y;
+var z = undefined;
+var z2 = undefined;
+var z3 = null;
+var y;
 y = 1;
 y = null;
 y = undefined;
+// ________________________________________________________________
 // never 代表不会出现的值 永远不
 // 1. 作为不会返回的函数的返回值
 function error(message) {
@@ -56,6 +60,7 @@ function fn(x) {
         console.log(x); // never 不可能走到这里
     }
 }
+// ________________________________________________________________
 // void 代表没有任何类型
 // 函数没有返回值，那么就是 void 类型
 function greeting() {
@@ -66,12 +71,24 @@ function greeting() {
 // 1. void 可以被赋值为 null undefined
 // 2. never 不能包含任何类型
 // 3. 如果函数的返回类型是 void 可以正常执行，但是返回 never 的函数无法正常执行（error/while/始终走不到的case）
+// ________________________________________________________________
 // Symbol
-const s1 = Symbol('key');
-const s2 = Symbol('key');
+var s1 = Symbol('key');
+var s2 = Symbol('key');
 // console.log(s1 === s2) // 始终不同 且会报错
+// ________________________________________________________________
 // BigInt
-const max = Number.MAX_SAFE_INTEGER; // 2^53-1 js 是双精度类型
-console.log(max + 1 === max + 2);
-const bigIntMax = BigInt(Number.MAX_SAFE_INTEGER);
-console.log(bigIntMax + 1 === bigIntMax + 2);
+var max = Number.MAX_SAFE_INTEGER; // 2^53-1 js 是双精度类型
+console.log(max + 1 === max + 2); // true
+var bigIntMax = BigInt(Number.MAX_SAFE_INTEGER);
+console.log(bigIntMax + BigInt(1) === bigIntMax + BigInt(2)); // false
+// n 代表大整型的意思，数字后面加n表示bigint 类型
+console.log(bigIntMax + 1n == bigIntMax + 2n); // false
+// ________________________________________________________________
+// bigint 和 number 互不兼容
+var foo;
+var bar;
+// foo = bar
+// bar = foo
+// Number BigInt 是 JS 中的类型
+// number 和 bigint 是 TS 中的类型
