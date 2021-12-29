@@ -4,6 +4,7 @@
     "module": "commonjs" /* Specify what module code is generated. */,
     "strictNullChecks": true,
     "lib": ["ESNext", "dom"],
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "rootDir": "src"
   }
 }
