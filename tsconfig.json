@@ -5,6 +5,7 @@
     "strictNullChecks": true,
     "lib": ["ESNext", "dom"],
     "experimentalDecorators": true,
-    "rootDir": "src"
+    "rootDir": "src",
+    "strictFunctionTypes": true
   }
 }
