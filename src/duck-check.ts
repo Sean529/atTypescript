@@ -142,4 +142,26 @@ type ParentToChild = (animal: Animal) => BlackDog
 let parentToChild: ParentToChild
 exec(parentToChild)
 
-// TODO: 不理解
+// TODO: 协变、逆变不理解
+// 只有父到子是可以的，也就是说，入参是父，返回值是子
+// 入参比返回值的类型多才行，TS 为了保证不出错
+
+// ________________________________________________________________
+// 泛型兼容性
+interface Empty<T> {
+	data: T // 没有这行时，Empty 没有返回值 y = x 可以，但是有了 data 后不行，因为返回值变成了 {data: string} / {data: number}
+}
+
+let x: Empty<string> // {data: string}
+let y: Empty<number> // {data: number}
+// y = x
+
+// ________________________________________________________________
+// 数字和枚举兼容
+enum Colors { Red, Green, Blue }
+let c: Colors
+c = Colors.Red
+c = 1
+let n: number
+n = 1
+n = Colors.Red
