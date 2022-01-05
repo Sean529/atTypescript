@@ -98,3 +98,49 @@ function mixin<T, U>(one: T, two: U): (T & U) {
 	return result
 }
 const x = mixin({ name: 'at' }, { age: 18 })
+
+// ________________________________________________________________
+// 获取变量的类型
+// typeof
+// 先定义类型，再定义变量
+
+type Person3 = {
+	name: string
+}
+const p3: Person3 = { name: 'at' }
+const p4 = { name: 'at' }
+type P4 = typeof p4
+
+// ________________________________________________________________
+// 索引访问操作符
+interface Person5 {
+	name: string
+	age: number
+	job: {
+		name: string
+	}
+}
+
+const FrontEndJob: Person5['job'] = {
+	name: 'at'
+}
+
+// ________________________________________________________________
+// Partial 可选的，部分的
+interface Person6 {
+	name: string
+	age: number
+	gender: 'male' | 'female'
+}
+
+// 批量把一个接口中的属性全部变成可选的
+type PartialPerson = {
+	[key in keyof Person6]?: Person6[key]
+}
+
+// Partial 源码
+type Partial<T> = {
+	[key in keyof T]: T[key]
+}
+
+type Person7 = Partial<Person6>
