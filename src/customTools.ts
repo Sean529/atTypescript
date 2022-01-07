@@ -19,10 +19,10 @@ type Proxify<T> = {
 function proxify<T>(obj: T): Proxify<T> {
 	let result = <Proxify<T>>{}
 	for (const key in obj) {
-		result[key] = {
+		Object.defineProperty(result, key, {
 			get: () => obj[key],
-			set: value => obj[key] = value
-		}
+			set: (value) => obj[key] = value
+		})
 	}
 	return result
 }
@@ -44,4 +44,5 @@ function unProxify<T>(t: Proxify<T>): T {
 }
 
 const newObj = unProxify(proxyProps)
+newObj.name = 'at'
 console.log('%c AT-[ newObj.name ]-48', 'font-size:13px; background:#de4307; color:#f6d04d;', newObj.name)
