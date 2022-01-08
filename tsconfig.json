@@ -6,6 +6,12 @@
     "lib": ["ESNext", "dom"],
     "experimentalDecorators": true,
     "rootDir": "src",
-    "strictFunctionTypes": true
-  }
+    "strictFunctionTypes": true,
+    "esModuleInterop": true,
+    "baseUrl": "./",
+    "paths": {
+      "*": ["types/*"]
+    }
+  },
+  "include": ["src/**/*", "typings/**/*"]
 }
