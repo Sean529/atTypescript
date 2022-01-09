@@ -22,6 +22,7 @@ interface String {
 	double(): string
 }
 
+// ________________________________________________________________
 // 在局部模块中扩展全局变量使用 declare global
 declare global {
 	interface Window {
@@ -29,3 +30,12 @@ declare global {
 	}
 }
 console.log(window.myName);
+
+// ________________________________________________________________
+// 给 events 库添加类型声明
+import { EventEmitter } from 'events'
+const e = new EventEmitter()
+e.on('message', (text: string): void => {
+	console.log(text);
+})
+e.emit('message', 'hello')
