@@ -39,3 +39,12 @@ e.on('message', (text: string): void => {
 	console.log(text);
 })
 e.emit('message', 'hello')
+
+// ________________________________________________________________
+// 给 store 扩展 age 属性
+
+import { createStore, Store } from 'redux'
+const reducer = (state: any) => state
+type ExtStore = Store & { age: number }
+const store: ExtStore = createStore(reducer)
+store.age
